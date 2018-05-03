@@ -1,0 +1,6 @@
+framework module Pods_LocalFoodSample02 {
+  umbrella header "Pods-LocalFoodSample02-umbrella.h"
+
+  export *
+  module * { export * }
+}
