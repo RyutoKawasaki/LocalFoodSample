@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ShioriViewController: UIViewController {
+class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +19,24 @@ class ShioriViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    // セルが表示されるときに呼ばれる処理（1個のセルを描画する毎に呼び出されます
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell:CustomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CustomCell
+        cell.lblSample.text = "ラベル\(indexPath.row)"
+        cell.imgSample.image = UIImage(named: "smile.png")
+        return cell
+    }
+    
+    // セクションの数（今回は1つだけです）
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    // 表示するセルの数
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
     }
 
     
