@@ -13,7 +13,6 @@
 		3157AD4520946D9700CB2A0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3157AD4320946D9700CB2A0B /* LaunchScreen.storyboard */; };
 		31C50C89209B5ED2007B1E36 /* ShioriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50C88209B5ED2007B1E36 /* ShioriViewController.swift */; };
 		31C50C8B209B6C3A007B1E36 /* MakeShioriViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50C8A209B6C3A007B1E36 /* MakeShioriViewController.swift */; };
-		31C50C8D209B8FDD007B1E36 /* ShioriListCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C50C8C209B8FDD007B1E36 /* ShioriListCustomCell.swift */; };
 		31C50C94209B92C7007B1E36 /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 31C50C93209B92C7007B1E36 /* smile.png */; };
 		E60C5193669D9F6CE5C23244 /* Pods_LocalFoodSample02.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134AEA16697EF9F770DAA7D4 /* Pods_LocalFoodSample02.framework */; };
 /* End PBXBuildFile section */
@@ -29,7 +28,6 @@
 		3157AD4620946D9700CB2A0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31C50C88209B5ED2007B1E36 /* ShioriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShioriViewController.swift; sourceTree = "<group>"; };
 		31C50C8A209B6C3A007B1E36 /* MakeShioriViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeShioriViewController.swift; sourceTree = "<group>"; };
-		31C50C8C209B8FDD007B1E36 /* ShioriListCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShioriListCustomCell.swift; sourceTree = "<group>"; };
 		31C50C93209B92C7007B1E36 /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		9444512118FD1EFF7363C9E7 /* Pods-LocalFoodSample02.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocalFoodSample02.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocalFoodSample02/Pods-LocalFoodSample02.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,7 +69,6 @@
 				3157AD3A20946D9700CB2A0B /* AppDelegate.swift */,
 				31C50C88209B5ED2007B1E36 /* ShioriViewController.swift */,
 				31C50C8A209B6C3A007B1E36 /* MakeShioriViewController.swift */,
-				31C50C8C209B8FDD007B1E36 /* ShioriListCustomCell.swift */,
 				3157AD3E20946D9700CB2A0B /* Main.storyboard */,
 				3157AD4120946D9700CB2A0B /* Assets.xcassets */,
 				3157AD4320946D9700CB2A0B /* LaunchScreen.storyboard */,
@@ -239,7 +236,6 @@
 			files = (
 				31C50C89209B5ED2007B1E36 /* ShioriViewController.swift in Sources */,
 				31C50C8B209B6C3A007B1E36 /* MakeShioriViewController.swift in Sources */,
-				31C50C8D209B8FDD007B1E36 /* ShioriListCustomCell.swift in Sources */,
 				3157AD3B20946D9700CB2A0B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
