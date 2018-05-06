@@ -1,5 +1,5 @@
 //
-//  CustomCell.swift
+//  ShioriListCustomCell.swift
 //  LocalFoodSample02
 //
 //  Created by Ryuton on 2018/05/04.
@@ -8,9 +8,10 @@
 
 import UIKit
 
-class CustomCell: UICollectionViewCell {
-    @IBOutlet var imgSample:UIImageView!
-    @IBOutlet var lblSample:UILabel!
+class ShioriListCustomCell: UICollectionViewCell {
+    
+    @IBOutlet var shioriImage: UIImageView!
+    @IBOutlet var shioriLabel: UILabel!
     
     override init(frame: CGRect){
         super.init(frame: frame)

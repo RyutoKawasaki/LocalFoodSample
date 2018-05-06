@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class MakeShioriViewController: UIViewController {
 
@@ -31,5 +30,4 @@ class MakeShioriViewController: UIViewController {
         self.present(navi, animated: true, completion: nil)
     }
     
-
 }

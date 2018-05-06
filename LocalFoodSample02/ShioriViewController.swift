@@ -11,9 +11,28 @@ import RealmSwift
 
 class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var ShioriCollectionView: UICollectionView!
+    
+    var shioriItem: Results<Shiori>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 永続化されているデータを取りだす
+        do {
+            let realm = try Realm()
+            shioriItem = realm.objects(Shiori.self)
+            ShioriCollectionView.reloadData()
+        } catch {
+            
+        }
 
+    }
+    
+    // 画面が表示される際などにtableViewのデータを再読み込みする
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ShioriCollectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,23 +40,50 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-    // セルが表示されるときに呼ばれる処理（1個のセルを描画する毎に呼び出されます
+    // セルが表示されるときに呼ばれる処理 ひとつのセルを描画する毎に呼ばれる
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:CustomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CustomCell
-        cell.lblSample.text = "ラベル\(indexPath.row)"
-        cell.imgSample.image = UIImage(named: "smile.png")
+        let cell: ShioriListCustomCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! ShioriListCustomCell
+        
+        // todoItemに代入されたデータをobject:NSArrayに代入
+        let object = shioriItem[indexPath.row]
+        
+        //cellのtextLabelのtextにobjectのtitleプロパティを代入
+        cell.shioriLabel.text = object.shioriTitle
+        
+        // #todo 表紙画像設定
+        cell.shioriImage.image = UIImage(named: "smile.png")
+        
         return cell
     }
     
-    // セクションの数（今回は1つだけです）
+    // セクションの数
+    // #todo セクション追加 作成共有したしおり、Finishedしおり
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
     // 表示するセルの数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return shioriItem.count
     }
+    
+    // #todo EditButtonでshiori削除、編集
+    // TableViewのCellの削除を行った際に、Realmに保存したデータを削除する
+//    func collectionView(_ collectionView: UICollectionView, commit editingStyle: UICollectionViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//
+//
+//        if editingStyle == UITableViewCellEditingStyle.delete {
+//            do {
+//                let realm = try Realm()
+//                try realm.write {
+//                    realm.delete(self.todoItem[indexPath.row])
+//                }
+//                tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+//            } catch {
+//            }
+//            tableView.reloadData()
+//        }
+//    }
 
     
     @IBAction func plusButtonTapped(_ sender: AnyObject) {
@@ -60,6 +106,22 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
                     print("しおりの名前 = \(textField.text!)")
                     
                     // #todo しおりの名前保存
+                    let newShiori = Shiori()
+                    
+                    // textFieldに入力したデータをnewTodoのtitleに代入
+                    // Shioriクラスのプロパティ
+                    newShiori.shioriTitle = textField.text!
+                    
+                    // 上記で代入したテキストデータを永続化するための処理
+                    do {
+                        let realm = try Realm()
+                        try realm.write({ () -> Void in
+                            realm.add(newShiori)
+                            print("Shiori Saved")
+                        })
+                    } catch {
+                        print("Save is Faild")
+                    }
                 }
                 
                 // しおりの名前入力されているときしおり作成画面に遷移
@@ -86,6 +148,7 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         // Add a text field to the alert
         alert.addTextField { (textField) in
+            
             textField.placeholder = "しおりの名前"
             // キーボードを自動的に出す
             textField.becomeFirstResponder()
