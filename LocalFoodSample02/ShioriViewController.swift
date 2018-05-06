@@ -67,6 +67,33 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
         return shioriItem.count
     }
     
+    // セルタップで画面遷移 ----------------------------
+    var selectedLabel : String = ""
+    // Cell が選択された場合
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print("cell selected")
+        // [indexPath.row] から画像名を探し、UImage を設定
+        selectedLabel = shioriItem[indexPath.row].shioriTitle
+        print("タップされたしおりタイトル = \(selectedLabel)")
+        if selectedLabel != "" {
+            // SubViewController へ遷移するために Segue を呼び出す
+            performSegue(withIdentifier: "toMakeShioriViewController",sender: nil)
+        }
+    }
+    
+    // Segue 準備
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        if (segue.identifier == "toMakeShioriViewController") {
+            //let subVC = segue.destination as! MakeShioriViewController
+            let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
+            
+            // SubViewController のselectedImgに選択された画像を設定する
+            subVC.selectedShioriTitle = selectedLabel
+        }
+    }
+    
+    
     // #todo EditButtonでshiori削除、編集
     // TableViewのCellの削除を行った際に、Realmに保存したデータを削除する
 //    func collectionView(_ collectionView: UICollectionView, commit editingStyle: UICollectionViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -124,13 +151,13 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
                     }
                 }
                 
-                // しおりの名前入力されているときしおり作成画面に遷移
-                let storyboard: UIStoryboard = self.storyboard!
-                let nextView = storyboard.instantiateViewController(withIdentifier: "MakeShioriViewController")
-                let navi = UINavigationController(rootViewController: nextView)
-                // #todo アニメーションの設定
-                // navi.modalTransitionStyle = .coverVertical
-                self.present(navi, animated: true, completion: nil)
+//                // しおりの名前入力されているときしおり作成画面に遷移
+//                let storyboard: UIStoryboard = self.storyboard!
+//                let nextView = storyboard.instantiateViewController(withIdentifier: "MakeShioriViewController")
+//                let navi = UINavigationController(rootViewController: nextView)
+//                // #todo アニメーションの設定
+//                // navi.modalTransitionStyle = .coverVertical
+//                self.present(navi, animated: true, completion: nil)
             }
             
         })

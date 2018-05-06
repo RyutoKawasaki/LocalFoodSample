@@ -10,9 +10,18 @@ import UIKit
 
 class MakeShioriViewController: UIViewController {
 
+    @IBOutlet weak var shioriTitleLabel: UILabel!
+    
+    var selectedShioriTitle: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        shioriTitleLabel.text = selectedShioriTitle
+        shioriTitleLabel.textAlignment = NSTextAlignment.center
+        
+        // #todo ナビゲーションバータイトル設定
+        // #todo ステータスバー色設定
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,13 +30,13 @@ class MakeShioriViewController: UIViewController {
     }
     
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
-        
         let storyboard: UIStoryboard = self.storyboard!
         let nextView = storyboard.instantiateViewController(withIdentifier: "ShioriViewController")
         let navi = UINavigationController(rootViewController: nextView)
         // #todo アニメーションの設定
         // navi.modalTransitionStyle = .coverVertical
         self.present(navi, animated: true, completion: nil)
+
     }
     
 }
