@@ -12,7 +12,6 @@ import RealmSwift
 class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var ShioriCollectionView: UICollectionView!
-    
     var shioriItem: Results<Shiori>!
     
     override func viewDidLoad() {
@@ -33,6 +32,8 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ShioriCollectionView.reloadData()
+        
+        hidesBottomBarWhenPushed = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +74,8 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("cell selected")
-        // [indexPath.row] から画像名を探し、UImage を設定
+        // #todo [indexPath.row] から画像名を探し、UImage を設定
+        // 選択されたセルの名前
         selectedLabel = shioriItem[indexPath.row].shioriTitle
         print("タップされたしおりタイトル = \(selectedLabel)")
         if selectedLabel != "" {
@@ -88,7 +90,7 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
             //let subVC = segue.destination as! MakeShioriViewController
             let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
             
-            // SubViewController のselectedImgに選択された画像を設定する
+            // #todo SubViewController のselectedImgに選択された画像を設定する
             subVC.selectedShioriTitle = selectedLabel
         }
     }

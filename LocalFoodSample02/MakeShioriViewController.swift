@@ -11,7 +11,6 @@ import UIKit
 class MakeShioriViewController: UIViewController {
 
     @IBOutlet weak var shioriTitleLabel: UILabel!
-    
     var selectedShioriTitle: String = ""
     
     override func viewDidLoad() {
@@ -30,13 +29,7 @@ class MakeShioriViewController: UIViewController {
     }
     
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
-        let storyboard: UIStoryboard = self.storyboard!
-        let nextView = storyboard.instantiateViewController(withIdentifier: "ShioriViewController")
-        let navi = UINavigationController(rootViewController: nextView)
-        // #todo アニメーションの設定
-        // navi.modalTransitionStyle = .coverVertical
-        self.present(navi, animated: true, completion: nil)
-
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
