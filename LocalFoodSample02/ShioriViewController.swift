@@ -188,7 +188,7 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
                 // Being in this block means that something fired the UITextFieldTextDidChange notification.
                     
                 // Access the textField object from alertController.addTextField(configurationHandler:) above and get the character count of its non whitespace characters
-                let textCount = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines).characters.count ?? 0
+                let textCount = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines).count ?? 0
                 let textIsNotEmpty = textCount > 0
                 
                 // If the text contains non whitespace characters, enable the OK Button
