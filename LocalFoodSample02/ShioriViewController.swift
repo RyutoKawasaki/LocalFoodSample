@@ -13,6 +13,7 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @IBOutlet weak var ShioriCollectionView: UICollectionView!
     var shioriItem: Results<Shiori>!
+    var createdShioriTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +26,12 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
         } catch {
             
         }
-
     }
     
-    // 画面が表示される際などにtableViewのデータを再読み込みする
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // 画面が表示される際にtableViewのデータを再読み込みする
         ShioriCollectionView.reloadData()
-        
-        hidesBottomBarWhenPushed = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,10 +70,8 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
     var selectedLabel : String = ""
     // Cell が選択された場合
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print("cell selected")
         // #todo [indexPath.row] から画像名を探し、UImage を設定
-        // 選択されたセルの名前
+        // 選択されたセルのしおりタイトル取得
         selectedLabel = shioriItem[indexPath.row].shioriTitle
         print("タップされたしおりタイトル = \(selectedLabel)")
         if selectedLabel != "" {
@@ -84,17 +80,20 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    // Segue 準備
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+        // セルタップ時のSegue準備
         if (segue.identifier == "toMakeShioriViewController") {
-            //let subVC = segue.destination as! MakeShioriViewController
             let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
             
             // #todo SubViewController のselectedImgに選択された画像を設定する
             subVC.selectedShioriTitle = selectedLabel
         }
+        if (segue.identifier == "toMakeShioriViewControllerFromButton") {
+            let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
+            subVC.selectedShioriTitle = createdShioriTitle
+            // #todo SubViewController のselectedImgに選択された画像を設定する
+        }
     }
-    
     
     // #todo EditButtonでshiori削除、編集
     // TableViewのCellの削除を行った際に、Realmに保存したデータを削除する
@@ -132,8 +131,6 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
                 
                 // アラートに含まれるすべてのテキストフィールドを調べる
                 for textField in textFields {
-                    print("しおりの名前 = \(textField.text!)")
-                    
                     // #todo しおりの名前保存
                     let newShiori = Shiori()
                     
@@ -151,15 +148,12 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
                     } catch {
                         print("Save is Faild")
                     }
+                    
+                    print("しおりの名前 = \(textField.text!)")
+                    self.createdShioriTitle = textField.text!
+                    // 画面遷移
+                    self.performSegue(withIdentifier: "toMakeShioriViewControllerFromButton",sender: nil)
                 }
-                
-//                // しおりの名前入力されているときしおり作成画面に遷移
-//                let storyboard: UIStoryboard = self.storyboard!
-//                let nextView = storyboard.instantiateViewController(withIdentifier: "MakeShioriViewController")
-//                let navi = UINavigationController(rootViewController: nextView)
-//                // #todo アニメーションの設定
-//                // navi.modalTransitionStyle = .coverVertical
-//                self.present(navi, animated: true, completion: nil)
             }
             
         })
@@ -193,7 +187,6 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
                 
                 // If the text contains non whitespace characters, enable the OK Button
                 okAction.isEnabled = textIsNotEmpty
-                    
             })
         }
         

@@ -131,6 +131,7 @@
                     <connections>
                         <outlet property="ShioriCollectionView" destination="s5B-MS-wA8" id="Uub-b1-2eN"/>
                         <segue destination="5Hj-oh-caR" kind="showDetail" identifier="toMakeShioriViewController" id="rni-2F-99h"/>
+                        <segue destination="5Hj-oh-caR" kind="showDetail" identifier="toMakeShioriViewControllerFromButton" action="showViewController:sender:" id="Eso-D3-hbZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Am3-tI-UCU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -166,20 +167,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="statusBarと色合ってない" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WT-5p-oPL">
-                                <rect key="frame" x="16" y="77" width="195" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NavigationController使う" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUE-o3-inx">
-                                <rect key="frame" x="16" y="106" width="192" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bCn-K8-6lP"/>
@@ -275,4 +262,7 @@
             <point key="canvasLocation" x="364" y="367"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rni-2F-99h"/>
+    </inferredMetricsTieBreakers>
 </document>

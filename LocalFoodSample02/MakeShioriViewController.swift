@@ -20,7 +20,6 @@ class MakeShioriViewController: UIViewController {
         shioriTitleLabel.textAlignment = NSTextAlignment.center
         
         // #todo ナビゲーションバータイトル設定
-        // #todo ステータスバー色設定
     }
 
     override func didReceiveMemoryWarning() {
