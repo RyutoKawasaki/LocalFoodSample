@@ -13,6 +13,7 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @IBOutlet weak var ShioriCollectionView: UICollectionView!
     var shioriItem: Results<Shiori>!
+    var selectedLabel = ""
     var createdShioriTitle = ""
     
     override func viewDidLoad() {
@@ -67,33 +68,36 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     // セルタップで画面遷移 ----------------------------
-    var selectedLabel : String = ""
-    // Cell が選択された場合
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // #todo [indexPath.row] から画像名を探し、UImage を設定
         // 選択されたセルのしおりタイトル取得
         selectedLabel = shioriItem[indexPath.row].shioriTitle
         print("タップされたしおりタイトル = \(selectedLabel)")
+        // #todo [indexPath.row] から画像名を探し、UImage を設定
+        
         if selectedLabel != "" {
-            // SubViewController へ遷移するために Segue を呼び出す
+            // 遷移先にしおりタイトルを渡す
+            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.createdOrSelectedShioriTitle = selectedLabel
             performSegue(withIdentifier: "toMakeShioriViewController",sender: nil)
+            
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
-        // セルタップ時のSegue準備
-        if (segue.identifier == "toMakeShioriViewController") {
-            let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
-            
-            // #todo SubViewController のselectedImgに選択された画像を設定する
-            subVC.selectedShioriTitle = selectedLabel
-        }
-        if (segue.identifier == "toMakeShioriViewControllerFromButton") {
-            let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
-            subVC.selectedShioriTitle = createdShioriTitle
-            // #todo SubViewController のselectedImgに選択された画像を設定する
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
+//        // セルタップ時のSegue準備
+//        if (segue.identifier == "toMakeShioriViewController") {
+//            let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
+//
+//            // #todo SubViewController のselectedImgに選択された画像を設定する
+//            subVC.selectedShioriTitle = selectedLabel
+//        }
+//        // しおり作成時のSegue準備
+//        if (segue.identifier == "toMakeShioriViewControllerFromButton") {
+//            let subVC: MakeShioriViewController = (segue.destination as? MakeShioriViewController)!
+//            subVC.selectedShioriTitle = createdShioriTitle
+//            // #todo SubViewController のselectedImgに選択された画像を設定する
+//        }
+//    }
     
     // #todo EditButtonでshiori削除、編集
     // TableViewのCellの削除を行った際に、Realmに保存したデータを削除する
@@ -151,11 +155,15 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
                     
                     print("しおりの名前 = \(textField.text!)")
                     self.createdShioriTitle = textField.text!
-                    // 画面遷移
-                    self.performSegue(withIdentifier: "toMakeShioriViewControllerFromButton",sender: nil)
                 }
             }
             
+            // 画面遷移
+            // 遷移先に値渡す
+            let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.createdOrSelectedShioriTitle = self.createdShioriTitle
+            let next = self.storyboard!.instantiateViewController(withIdentifier: "MakeShioriViewController")
+            self.present(next,animated: true, completion: nil)
         })
         
         // キャンセルボタンの設定

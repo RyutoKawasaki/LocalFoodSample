@@ -11,12 +11,17 @@ import UIKit
 class MakeShioriViewController: UIViewController {
 
     @IBOutlet weak var shioriTitleLabel: UILabel!
-    var selectedShioriTitle: String = ""
+    var selectedShioriTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        shioriTitleLabel.text = selectedShioriTitle
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        shioriTitleLabel.text = appDelegate.createdOrSelectedShioriTitle
         shioriTitleLabel.textAlignment = NSTextAlignment.center
         
         // #todo ナビゲーションバータイトル設定

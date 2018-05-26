@@ -131,7 +131,6 @@
                     <connections>
                         <outlet property="ShioriCollectionView" destination="s5B-MS-wA8" id="Uub-b1-2eN"/>
                         <segue destination="5Hj-oh-caR" kind="showDetail" identifier="toMakeShioriViewController" id="rni-2F-99h"/>
-                        <segue destination="5Hj-oh-caR" kind="showDetail" identifier="toMakeShioriViewControllerFromButton" action="showViewController:sender:" id="Eso-D3-hbZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Am3-tI-UCU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,6 +166,18 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2A-Nk-jLA">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Stamp" id="nGw-vN-k7y"/>
+                                    <tabBarItem title="Text" id="sdR-Nq-iUr"/>
+                                    <tabBarItem title="Picture" id="GhG-P7-6zw"/>
+                                    <tabBarItem title="Frame" id="WJH-jV-NJp"/>
+                                    <tabBarItem title="Destination" id="0Os-pY-03c"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bCn-K8-6lP"/>
@@ -262,7 +273,4 @@
             <point key="canvasLocation" x="364" y="367"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rni-2F-99h"/>
-    </inferredMetricsTieBreakers>
 </document>
