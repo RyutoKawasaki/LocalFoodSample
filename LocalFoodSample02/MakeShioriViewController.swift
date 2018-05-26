@@ -10,7 +10,6 @@ import UIKit
 
 class MakeShioriViewController: UIViewController {
 
-    @IBOutlet weak var shioriTitleLabel: UILabel!
     var selectedShioriTitle = ""
     
     override func viewDidLoad() {
@@ -21,10 +20,8 @@ class MakeShioriViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        shioriTitleLabel.text = appDelegate.createdOrSelectedShioriTitle
-        shioriTitleLabel.textAlignment = NSTextAlignment.center
-        
-        // #todo ナビゲーションバータイトル設定
+        // ナビゲーションバータイトル設定
+        navigationItem.title = appDelegate.createdOrSelectedShioriTitle
     }
 
     override func didReceiveMemoryWarning() {

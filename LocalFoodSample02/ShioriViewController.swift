@@ -162,8 +162,7 @@ class ShioriViewController: UIViewController, UICollectionViewDelegate, UICollec
             // 遷移先に値渡す
             let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.createdOrSelectedShioriTitle = self.createdShioriTitle
-            let next = self.storyboard!.instantiateViewController(withIdentifier: "MakeShioriViewController")
-            self.present(next,animated: true, completion: nil)
+            self.performSegue(withIdentifier: "toMakeShioriViewController",sender: nil)
         })
         
         // キャンセルボタンの設定
