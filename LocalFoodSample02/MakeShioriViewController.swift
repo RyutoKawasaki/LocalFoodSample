@@ -29,7 +29,11 @@ class MakeShioriViewController: UIViewController {
 
     }
     
-    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func tappedDestinationButton(_ sender: UIBarButtonItem) {
+        print("Destination")
+    }
+    
+    @IBAction func tappedBackButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     

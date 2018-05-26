@@ -152,6 +152,22 @@
                                     <navigationItem title="#todo しおりTitle" id="FgX-UE-Aba"/>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1oe-af-Z1Y">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Cover" id="S03-sr-IbU"/>
+                                    <barButtonItem title="Stamp" id="Jzj-6b-FYB"/>
+                                    <barButtonItem title="Pic" id="6vq-qr-5TQ"/>
+                                    <barButtonItem title="Text" id="7P4-SY-2fV"/>
+                                    <barButtonItem title="Frame" id="AdX-RJ-SpD"/>
+                                    <barButtonItem title="Dest" id="0JS-Ny-sWC">
+                                        <connections>
+                                            <action selector="tappedDestinationButton:" destination="5Hj-oh-caR" id="jnx-w8-q3M"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bCn-K8-6lP"/>
@@ -160,7 +176,7 @@
                     <navigationItem key="navigationItem" title="Title" id="m1H-BE-kcU">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="0QF-Sj-1jb">
                             <connections>
-                                <action selector="backButtonTapped:" destination="5Hj-oh-caR" id="rU1-hz-kpP"/>
+                                <action selector="tappedBackButton:" destination="5Hj-oh-caR" id="j0k-Ra-xot"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Dh6-11-B4o"/>
